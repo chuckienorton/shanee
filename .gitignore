@@ -1,0 +1,14 @@
+# Gitignore for Shane E
+
+
+!.gitignore
+!.gitkeep
+
+
+site/media
+
+Thumbs.db
+.DS_Store
+
+.rbenv-version
+.rvmrc
