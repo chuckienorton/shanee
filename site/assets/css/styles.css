@@ -246,6 +246,47 @@ textarea {
 .hide {
   display: none;
 }
+/* Shane E Fonts */
+@font-face {
+  font-family: 'SE';
+  src: url('/assets/webfonts/SE.eot');
+}
+@font-face {
+  font-family: 'SE';
+  src: url(data:application/x-font-woff;charset=utf-8;base64,d09GRk9UVE8AAAP0AAsAAAAABegAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABDRkYgAAABCAAAAOIAAAFg8bMFXEZGVE0AAAHsAAAAGgAAABxn2IMAR0RFRgAAAggAAAAdAAAAIAAwAARPUy8yAAACKAAAAEsAAABgL9zcQGNtYXAAAAJ0AAAAOgAAAVLgE/LMaGVhZAAAArAAAAAuAAAANvy6IO1oaGVhAAAC4AAAAB4AAAAkBBD/5GhtdHgAAAMAAAAADAAAAAwEAAAAbWF4cAAAAwwAAAAGAAAABgADUABuYW1lAAADFAAAANIAAAFK850hyHBvc3QAAAPoAAAADAAAACAAAwAAeJxtTT2KwlAQ/iZ5okiIq2tghaeeQMgJFITYS5ottxVBFtFObRQUHnbpvYFHkD2D1p7DV4jjS1yNiM3M9zffEIQAEdlhALJAaOqqpWu2/hLKsZUjanlUwhIr9QBOVvV1pEcZid+CBD4kxkWJnKTvEkTckUMBRXyOB73A932zOmaFgXkB0JJWsImsw9E9mRaPsf5pM4abHXOMOEEpfaMl4dtZSu9anTEz8LLd7Dzmbax249Bj8P5vwWi0Jjc3HXd3/h9J6Euk0Zo+uU+lxs24So/EOdJR1tVRWXnKyV8BJ9qfjgAAeJxjYGBgZACCM7aLzoPos2cLJGA0AEwFBsAAAHicY2BkYGDgA2IJBhBgYmAEQhDJAuYxAAAEYAA1AAAAeJxjYGZiYJzAwMrAwejDmMbAwOAOpb8ySDK0MDAwMbAyM8CBAILJEJDmmsLg8IDhAwPjg/8PGPQYHzAoNDAwMMIVKAAhIwAQQgwfAHicY2BgYGaAYBkGRgYQ8AHyGMF8FgYDIM0BhEwgiQcMHxj+/0dmKTAKMEF1gQEjGwMyd0QCAMlcCK4AAHicY2BkYGAA4qmSUY/i+W2+MnAzMYDA2bMFEgj6/wMmBsYHQC4HA1gaACnrCqkAAHicY2BkYGB88P8Bgx4TAwPDPwYgCRRBAcwAbecD9gAAAgAAAAIAAAAAAAAAAABQAAADAAB4nEWNPWrDQBBGn2RZwSSkDKQJmwNIrGTcmLTWASJwG1wswmAkWNutK0NukDYHSJUb5pMyJLvMzJtv/oA7PkgYX0JKbpxyw6PxjCfejDNVrsZzbvk0zqV/qzPJFlKyaWrklHsWxjNeeDbO9C/Gcx54N86lf9GygVb2SqDjzIEdUWnozoedoGGg5zTFqI6Ao6bEK65l44JfWkorWMlqUaWcZuhPzRC74OrSu7VrN3JLX6yK2leq/13fam/kyH665jQ9XmAb4nE/9K4q/X/zD8HQJWEAAHicY2BmwAsAAH0ABA==) format('woff'), url(data:application/x-font-ttf;charset=utf-8;base64,AAEAAAANAIAAAwBQRkZUTWfYgwAAAAU8AAAAHEdERUYAMgAGAAAFHAAAACBPUy8yL7rcHwAAAVgAAABWY21hcOAV89MAAAHEAAABUmdhc3D//wADAAAFFAAAAAhnbHlmO6vlkQAAAyQAAABoaGVhZPy6IO0AAADcAAAANmhoZWEEEP/mAAABFAAAACRobXR4BKoAAAAAAbAAAAAUbG9jYQAmADQAAAMYAAAADG1heHAASQAXAAABOAAAACBuYW1l850hyAAAA4wAAAFKcG9zdJtVPjcAAATYAAAAPAABAAAAAQAAH/ACMl8PPPUACwIAAAAAAM3NcBgAAAAAzc1wGAAA/+ACAAHgAAAACAACAAAAAAAAAAEAAAHg/+AALgIAAAD+AAIAAAEAAAAAAAAAAAAAAAAAAAAFAAEAAAAFABQAAgAAAAAAAgAAAAEAAQAAAEAAAAAAAAAAAQIAAZAABQAIAUwBZgAAAEcBTAFmAAAA9QAZAIQAAAIABQMAAAAAAAAAAAAAEAAAAAAAAAAAAAAAUGZFZABA4ADwAAHg/+AALgHgACCAAAABAAAAAAAAAgAAAAAAAAAAqgAAAgAAAAAAAAAAAAADAAAAAwAAABwAAQAAAAAATAADAAEAAAAcAAQAMAAAAAgACAACAAAAAOAA8AD//wAAAADgAPAA//8AACADEAQAAQAAAAAAAAAAAAABBgAAAQAAAAAAAAABAgAAAAIAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJgA0AAIAAP/gAgAB4AAHABMAAAAiBhQWMjY0DwEnByc3JzcXNxcHAWrUlpbUloEuUVEuUlIuUVEuUgHgltSWltS7LlJSLlFRLlJSLlEAAAABAAD/4AIAAeAAAgAAEQEhAgD+AAHg/gAAAAAAAAAMAJYAAQAAAAAAAQACAAYAAQAAAAAAAgAHABkAAQAAAAAAAwAeAF8AAQAAAAAABAACAIQAAQAAAAAABQALAJ8AAQAAAAAABgACALEAAwABBAkAAQAEAAAAAwABBAkAAgAOAAkAAwABBAkAAwA8ACEAAwABBAkABAAEAH4AAwABBAkABQAWAIcAAwABBAkABgAEAKsAUwBFAABTRQAAUgBlAGcAdQBsAGEAcgAAUmVndWxhcgAARgBvAG4AdABGAG8AcgBnAGUAIAAyAC4AMAAgADoAIABTAEUAIAA6ACAAMwAwAC0ANQAtADIAMAAxADMAAEZvbnRGb3JnZSAyLjAgOiBTRSA6IDMwLTUtMjAxMwAAUwBFAABTRQAAVgBlAHIAcwBpAG8AbgAgADEALgAwAABWZXJzaW9uIDEuMAAAUwBFAABTRQAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAABAAIBAgEDB3VuaUUwMDAHdW5pRjAwMAAAAAH//wACAAEAAAAOAAAAGAAAAAAAAgABAAMABAABAAQAAAACAAAAAAABAAAAAMw9os8AAAAAzc1wGAAAAADNzXAY) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Use the following CSS code if you want to use data attributes for inserting your icons */
+[data-icon]:before {
+  font-family: 'SE';
+  content: attr(data-icon);
+  speak: none;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+/* Use the following CSS code if you want to have a class per icon */
+/*
+Instead of a list of all class selectors,
+you can use the generic selector below, but it's slower:
+[class*="icon_"] {
+*/
+.icon_x-altx-alt {
+  font-family: 'SE';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+.icon_x-altx-alt:before {
+  content: "\e000";
+}
 /* Site Colors */
 /* Primary Styles for Shane E Website */
 html {
@@ -258,9 +299,17 @@ body {
   -webkit-transition: all .2s;
 }
 /* Tree of Work */
-#tree .branch {
+#tree {
+  margin: 0 auto;
   position: relative;
-  display: block;
+}
+#treeSVG {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+#treeSVG .branch {
+  position: relative;
 }
 .thumb {
   position: absolute;
@@ -270,4 +319,128 @@ body {
   background-color: #4c4b74;
   transition: all .1s .05s;
   -webkit-transition: all .1s .05s;
+  background-size: cover;
+}
+.thumb:hover {
+  cursor: pointer;
+}
+/* Modals */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #000000;
+}
+.modal-backdrop.fade {
+  opacity: 0;
+}
+.modal-backdrop,
+.modal-backdrop.fade.in {
+  opacity: 0.2;
+  filter: alpha(opacity=80);
+}
+.modal {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  z-index: 1050;
+  width: 560px;
+  margin-left: -280px;
+  background-color: none;
+  border: none;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: 4px -5px 32px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 4px -5px 32px rgba(0, 0, 0, 0.4);
+  box-shadow: 4px -5px 32px rgba(0, 0, 0, 0.4);
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding-box;
+  background-clip: padding-box;
+  outline: none;
+}
+.modal.fade {
+  -webkit-transition: opacity 0.3s linear, top 0.3s ease-out;
+  -moz-transition: opacity 0.3s linear, top 0.3s ease-out;
+  -o-transition: opacity 0.3s linear, top 0.3s ease-out;
+  transition: opacity 0.3s linear, top 0.3s ease-out;
+  top: -25%;
+}
+.modal.fade.in {
+  top: 10%;
+}
+.modal-header {
+  padding: 9px 15px;
+  border-bottom: 1px solid #eee;
+}
+.modal-header .close {
+  margin-top: 2px;
+}
+.modal-header h3 {
+  margin: 0;
+  line-height: 30px;
+}
+.modal-body {
+  position: relative;
+  overflow-y: auto;
+  max-height: 400px;
+  padding: 15px;
+}
+.modal-form {
+  margin-bottom: 0;
+}
+.modal-footer {
+  padding: 14px 15px 15px;
+  margin-bottom: 0;
+  text-align: right;
+  background-color: #f5f5f5;
+  border-top: 1px solid #ddd;
+  -webkit-border-radius: 0 0 6px 6px;
+  -moz-border-radius: 0 0 6px 6px;
+  border-radius: 0 0 6px 6px;
+  -webkit-box-shadow: inset 0 1px 0 #ffffff;
+  -moz-box-shadow: inset 0 1px 0 #ffffff;
+  box-shadow: inset 0 1px 0 #ffffff;
+  *zoom: 1;
+}
+.modal-footer:before,
+.modal-footer:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.modal-footer:after {
+  clear: both;
+}
+.modal-footer .btn + .btn {
+  margin-left: 5px;
+  margin-bottom: 0;
+}
+.modal-footer .btn-group .btn + .btn {
+  margin-left: -1px;
+}
+.modal-footer .btn-block + .btn-block {
+  margin-left: 0;
+}
+.modal_close {
+  position: absolute;
+  top: 2%;
+  right: 4%;
+  color: #73d1b7;
+  font-size: 240%;
+  transition: all .2s;
+  line-height: 105%;
+}
+/* Media IMAGE modals can click anywhere to close */
+.media_img .modal_close {
+  opacity: 0.2;
+}
+.media_img:hover {
+  cursor: pointer;
+}
+.media_img:hover .modal_close {
+  opacity: .9;
 }

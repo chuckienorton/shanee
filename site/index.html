@@ -26,7 +26,7 @@
 				<div id="tree">
 					<!-- Shane Tree of Work -->
 
-					<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" height="100%" viewBox="0 0 661 533" enable-background="new 0 0 661 533" xml:space="preserve">
+					<svg id="treeSVG" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 661 533" xml:space="preserve" preserveAspectRatio="xMinYMin scale" width="100%" height="100%" scale="1.24">
 					<g id="Layer_1" display="none">
 						<rect x="-14" y="-18" display="inline" stroke="#000000" stroke-miterlimit="10" width="822" height="648"/>
 					</g>
@@ -51,9 +51,9 @@
 						<path class="branch" data-branch="t11" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-miterlimit="10" d="M329.377,335.23c0-35.23-21-77.23-59.291-80.199"/>
 						<path class="branch" data-branch="t" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-miterlimit="10" d="M330.984,345.332
 							c-158.44,6.134-290.369-22.733-285.378-129.375"/>
-						<path class="branch" data-branch="t12" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-miterlimit="10" d="M459.928,234.547
+						<path class="branch" data-branch="t12" data-branch_end_side="MR" fill="none" stroke="#000" stroke-width="3" stroke-miterlimit="10" d="M459.928,234.547
 							c-9.873-12.685-27.064-19.342-42.203-22.926c-17.943-4.249-37.892-4.815-55.322,1.901c-18.111,6.979-29.852,22.248-32.501,41.435
-							c-0.187,1.351-0.332,2.706-0.439,4.064"/>
+							c-0.187,1.351-0.332,2.706-0.439,4.064" id="t12" />
 						<path class="branch" data-branch="t13" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-miterlimit="10" d="M593.451,21.618
 							c-11.037,125.259-50.68-5.866-92.795,72.987"/>
 						<path class="branch" data-branch="t14" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-miterlimit="10" d="M45.539,216.214
@@ -114,10 +114,26 @@
 					</g>
 					</svg>
 				</div>
-				<div id="treeWork" class="hide">
-					<div id="p5" class="item" data-branch_attach="t30">
-						<div id="t30_thumb" class="thumb hide" style="background-image:url('media/p5/5_thumb.jpg');"></div>
-						<div id="t30_modal" class="modal hide">
+				<div id="treeWork" class="">
+					<div id="p5" class="item" data-branch_attach="t30" data-type="image">
+						<div id="t30_thumb" 
+							class="thumb hide" 
+							data-branch_attach="t30" 
+							style="background-image:url('media/p5/5_thumb.jpg');">
+						</div>
+						<div id="t30_modal" 
+							class="modal media_img hide" 
+							data-branch_attach="t30">
+								<div class="modal_close icon icon_x-altx-alt" data-dismiss="modal" aria-hidden="true">
+									<span class="hide">Close</span>
+								</div>
+								<img src="media/p5/5.jpg" />
+						</div>
+					</div>
+					<div id="p6" class="item" data-branch_attach="t12" data-type="image">
+						<div id="t12_thumb" class="thumb hide" data-branch_attach="t12" style="background-image:url('media/p5/5_thumb.jpg');"></div>
+						<div id="t12_modal" class="modal media_img hide" data-branch_attach="t12">
+							<div class="modal_close icon icon_x-altx-alt" data-dismiss="modal" aria-hidden="true"><span class="hide">Close</span></div>
 							<img src="media/p5/5.jpg" />
 						</div>
 					</div>
@@ -136,11 +152,11 @@
 
         <script src="assets/js/scripts.js"></script>
 
-        <script>
-            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
-        </script>
+        // <script>
+        //     var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+        //     (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        //     g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+        //     s.parentNode.insertBefore(g,s)}(document,'script'));
+        // </script>
     </body>
 </html>
