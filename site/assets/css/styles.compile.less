@@ -1,11 +1,20 @@
-@import "n.reset.less"; // Norton Framework RESET File
-@import "styles.fonts.less"; // Import Custom Fonts
 
 /* Site Colors */
 @green1: 	#73d1b7;
+@green2:  #41937c;
 @black1: 	#1e1d1e;
 @white1: 	#FFFFFF;
 @blue1:		#4c4b74;
+@red1:    #f26c4f;
+@red2:    #dc644a;
+@font1:   'Code-Pro';
+@font2:   'Code-Pro-Light-Demo';
+@font3:   'Code-Pro-Light';
+@font4:   'Code-Pro-LC'; 
+
+@import "n.reset.less"; // Norton Framework RESET File
+@import "styles.fonts.less"; // Import Custom Fonts
+@import "n.mediaelementplayer.less"; // import media player
 
 
 /* Primary Styles for Shane E Website */
@@ -15,7 +24,144 @@ body {
 	color:@white1; 
 			transition	: 	all .2s;
 	-webkit-transition	:	all .2s;
+  font-family: @font4, sans-serif;
 }
+
+.font1 {
+  font-family: @font1, 'arial', sans-serif; 
+}   
+.font2 {
+  font-family: @font2, 'arial', sans-serif; 
+}   
+.font3 {
+  font-family: @font3, 'arial', sans-serif; 
+}   
+.font4 {
+  font-family: @font4, 'arial', sans-serif; 
+}   
+
+/* StartS */
+#menu {
+  position:absolute;
+  font-size:100%;
+  font-family: @font4, 'arial', sans-serif;
+  width:50%;
+  height:150px;
+  bottom:1%;
+  left:1%;
+
+  .s {
+    cursor:pointer;
+    position:absolute;
+    width:111px;
+    left:0; 
+    bottom:0;
+    line-height:78%;
+    font-size:1000%;
+    font-family: @font1, 'arial', sans-serif;
+  }
+
+  .text {
+    position:absolute;
+    left:104px;
+    bottom:0;
+    display:block;
+    font-size: 170%;
+    width: 100px;
+    color:@black1;
+    p {
+      display:block;
+      width:100px;
+      line-height:27px;
+    }
+    .p1 {
+      font-size:120%;
+    }
+    .p2 {
+      font-size:66%;
+    }
+    .p3 {
+      font-size:110%;
+    }    
+    .p4 {
+      font-size:100%;
+    }    
+    .p5 {
+      font-size:110%;
+    }
+  }
+
+  .name {
+    position:absolute;
+    bottom:0;
+    left:230px;
+    font-size:200%;
+
+  }  
+
+}
+
+/* Start Animations */
+.start {
+  
+  #menu {
+    width:150px;
+    height:150px; 
+    bottom:50%;
+    left:50%;
+    margin: 0 0 25px -25px;
+    /* Animations */
+    -webkit-transition: all .3s ease-in .3s;
+            transition: all .3s ease-in .3s; 
+    
+    .s {
+      
+      z-index:1000;
+    }
+    .text, .name {
+      opacity:0;
+      -webkit-transition: opacity .3s 0s;
+              transition: opacity .3s 0s; 
+    }
+
+
+  }
+
+  #tree {
+    opacity:0;
+      -webkit-transition: opacity .5s 0s;
+              transition: opacity .5s 0s; 
+  }
+
+}
+
+/* Work Animations */
+
+.work {
+  #menu {
+    
+    -webkit-transition: all .3s ease-in-out;
+            transition: all .3s ease-in-out; 
+    
+
+    .text,.name {
+
+      opacity:1;
+      -webkit-transition: opacity 1s 0.2s;
+              transition: opacity 1s 0.2s; 
+    }
+
+
+  }
+  #tree {
+    opacity:1;
+      -webkit-transition: opacity 1s 0.5s;
+              transition: opacity 1s 0.5s; 
+  }
+
+
+
+}            
 
 /* Tree of Work */
 #tree {
@@ -157,7 +303,7 @@ body {
 .modal_close {
 	position:absolute; 
 	top:2%; 
-	right:4%; 
+	right:3%; 
 	color:@green1;
 	font-size:240%;
 	transition: all .2s;
@@ -165,9 +311,16 @@ body {
 }
 
 /* Media IMAGE modals can click anywhere to close */
-.media_img .modal_close {
-	opacity:0.2;
+.media_img {
+	.modal_close {
+		opacity:0.2;
+    z-index: 10000;
+	}
+	img {
+		display:block;
+	}
 }
+
 .media_img:hover {
 	cursor: pointer;
 	.modal_close {
