@@ -12,6 +12,8 @@
 @font3:   'Code-Pro-Light';
 @font4:   'Code-Pro-LC'; 
 
+
+
 @import "n.reset.less"; // Norton Framework RESET File
 @import "styles.fonts.less"; // Import Custom Fonts
 @import "n.mediaelementplayer.less"; // import media player
@@ -101,6 +103,22 @@ body {
 
 }
 
+@media screen and (max-width: 750px), screen and (max-height: 535px) {
+    #menu {
+        font-size: 80%;
+        .text {
+          left:84px;
+          p {
+            line-height:20px;
+          }
+        }
+        .name {
+          left:185px;
+        }
+
+    }
+}
+
 /* Start Animations */
 .start {
   
@@ -109,7 +127,7 @@ body {
     height:150px; 
     bottom:50%;
     left:50%;
-    margin: 0 0 25px -25px;
+    margin: 0 0 5px -50px;
     /* Animations */
     -webkit-transition: all .3s ease-in .3s;
             transition: all .3s ease-in .3s; 
@@ -176,6 +194,15 @@ body {
 	}
 
 }
+.bottomVertLine {
+  position:absolute;
+  left:50%;
+  bottom:0;
+  width:3px;
+  min-height:30%;
+  background-color:#FFF;
+  margin-left:-1px;
+}
 
 #treeWork {}
 
@@ -184,10 +211,19 @@ body {
 	width: 44px; 
 	height:44px; 
 	border-radius: 20px; 
-	background-color: @blue1;
+	background-color: rgba(76,75,116,0.7);
 			transition	: 	all .1s .05s;
 	-webkit-transition	:	all .1s .05s;
 	background-size:cover;
+  text-align: center;
+}
+
+.thumb span {
+  opacity:0.5;
+}
+
+body:not(.branches_map) .thumb span {
+  display:none;
 }
 
 .thumb:hover {
@@ -213,7 +249,7 @@ body {
 }
 .modal-backdrop,
 .modal-backdrop.fade.in {
-  opacity: 0.2;
+  opacity: 0.5;
   filter: alpha(opacity=80);
 }
 .modal {

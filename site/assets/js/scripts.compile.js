@@ -38,11 +38,9 @@
 	}
 
 	var launchStart	=	function() {
-		$('#startS').on('click',function(e) {
-			//alert('whatup?');
+		$(document).on('click', '#startS', function() {
 			//e.preventDefault();
-			$('body').toggleClass('start')
-			.toggleClass('work');
+			$('body').toggleClass('start').toggleClass('work');
 			
 			// window.setTimeout(function() {
 			// 	$('body').removeClass('transition');
@@ -73,7 +71,10 @@
 			width,
 			height,
 			tWidthDif,
-			tHeightDiff;
+			tHeightDiff,
+			winHeight 	=	$.se.win.height,
+			tOffset 	=	(winHeight * .1);
+			console.log('tOffset: ' + tOffset);
 
 		if ( $.se.win.minName == 'h') { // height is smaller
 			height 		=	$.se.win.minSize;
@@ -91,6 +92,9 @@
 		// console.log('width: ' + width + '; height: ' + height );
 		// set the svg tree size
 		$('#tree').width(width).height(height);
+		$('#tree').css({
+			'top'	: 	tOffset
+		});
 		$('#treeSVG').attr('width',width).attr('height',height);
 		// set global vars...
 		$.se.tree.width 			=	width;
@@ -107,6 +111,7 @@
 			setWorkThumbPositions(workBranch);
 			setModalSizes(workBranch);
 			setModalDefaults(workBranch);
+
 		});
 	}
 
@@ -192,6 +197,9 @@
 			if (side == 'TR') { 		// Top Right
 				$.se.tree.meta[it].pos_end.y = pos.top;
 				$.se.tree.meta[it].pos_end.x = pos.left + widthOffset;
+			} else if (side == 'TM') {	// Top Middle
+				$.se.tree.meta[it].pos_end.y = pos.top + widthOffset;
+				$.se.tree.meta[it].pos_end.x = pos.left + widthOffset;
 			} else if (side == 'BR') {	// Bottom Right
 				$.se.tree.meta[it].pos_end.y = pos.top + widthOffset;
 				$.se.tree.meta[it].pos_end.x = pos.left + widthOffset;
@@ -213,26 +221,34 @@
 		var workType 	= 	$.se.tree.branch[workBranch].type,
 			winWidth	=	($.se.win.width),
 			winHeight	=	($.se.win.height),
+			winSmallest	=	Math.min(winWidth,winHeight),
 			modalWidth	=	700, // width default
 			modalHeight, // height auto as default
 			marginTop,
 			marginLeft,
 			top;
 
-
 		if (winWidth >= 1300 ) {
 			modalWidth = 830;
 		} else if (winWidth >= 900 ) {
 			modalWidth = 700;
 		} else {
-			modalWidth = (winWidth * 0.9);
+			modalWidth = (winWidth * 0.97);
 		}
 
 		if (workType == 'image') {
-			//getImageData(workBranch); //+ this doesn't work correctly. 
-			var img 		=	$('#'+workBranch+'_modal img')[0],
-				imgWidth,
-				imgHeight;
+			getImageData(workBranch); //+ this doesn't work correctly. 
+			var imgWidth 	= 	$.se.tree.branch[workBranch].imgWidth,
+				imgHeight 	= 	$.se.tree.branch[workBranch].imgHeight,
+				imgRatio	=	(imgWidth / imgHeight);
+
+				if (imgRatio < 1) { // If horizontal image
+					modalHeight = 	Math.min(imgHeight,(winHeight * 0.9) );// set by height
+					modalWidth	= 	(modalHeight * imgRatio);
+				} else {
+					modalWidth  = 	Math.min(imgWidth,(winWidth * 0.9) );// set by width
+					modalHeight	=	(modalWidth / imgRatio);
+				}
 		}
 
 		if (workType == 'video') {
@@ -243,12 +259,19 @@
 				modalHeight	=	(modalWidth / videoRatio);
 		}
 
-		// Last check to make sure h isn't larger than screen
-		// if 	( modalHeight > winHeight ) {
-		// 	var reduce	=	0.9;
-		// 	setModalSizes(workBranch, reduce);
-		// }
 
+		// last check for screen sizes
+		var modalRatio = modalWidth / modalHeight;
+		
+		if 	( modalHeight > winHeight ) {
+			modalHeight = winHeight * .95;
+			modalWidth = modalHeight * modalRatio;
+		}
+
+		if (modalWidth > winWidth ) {
+			modalWidth = winWidth * .95;
+			modalHeight = modalWidth / modalRatio;
+		}
 
 
 		// Set JS Dimensions
@@ -281,15 +304,10 @@
 			var img 		=	$('#'+workBranch+'_modal img')[0],
 				imgWidth,
 				imgHeight;
-
-			$("<img/>") // Make in memory copy of image to avoid css issues
-			    .attr("src", $(img).attr("src"))
-			    .load(function() {
-			        imgWidth = this.width;   // Note: $(this).width() will not
-			        imgHeight = this.height; // work for in memory images.
-			        $.se.tree.branch[workBranch].h =	imgHeight;
-			        $.se.tree.branch[workBranch].width 	=	imgWidth;
-			 });
+			var t = new Image();
+			t.src = (img.getAttribute ? img.getAttribute("src") : false) || img.src;
+    		$.se.tree.branch[workBranch].imgWidth = t.width;
+    		$.se.tree.branch[workBranch].imgHeight = t.height;
 	}
 
 	var setModalDefaults = function(workBranch)  {
@@ -346,11 +364,11 @@
 				    // Hide controls when playing and mouse is not over the video
 				    alwaysShowControls: false,
 				    // force iPad's native controls
-				    iPadUseNativeControls: false,
+				    iPadUseNativeControls: true,
 				    // force iPhone's native controls
-				    iPhoneUseNativeControls: false, 
+				    iPhoneUseNativeControls: true, 
 				    // force Android's native controls
-				    AndroidUseNativeControls: false,
+				    AndroidUseNativeControls: true,
 				    // forces the hour marker (##:00:00)
 				    alwaysShowHours: false,
 				    // show framecount in timecode (##:00:00:00)
@@ -430,7 +448,21 @@
 
 
 $(function() {
-	$.se.init();
+	
+	var go = function() {
+		if (document.readyState != "complete") {
+    		setTimeout( 
+    		go, // try again in 100 milloseconds 
+    		100);
+    	return;
+  		} else {
+  			console.log('and go!');
+			$.se.init();
+  		}
+  	}
+  	go();
+
+	
 	$(window).resize(function() {
 		$.se.resize();
 	});	

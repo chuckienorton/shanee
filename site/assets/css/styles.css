@@ -1200,13 +1200,27 @@ body {
   left: 230px;
   font-size: 200%;
 }
+@media screen and (max-width: 750px), screen and (max-height: 535px) {
+  #menu {
+    font-size: 80%;
+  }
+  #menu .text {
+    left: 84px;
+  }
+  #menu .text p {
+    line-height: 20px;
+  }
+  #menu .name {
+    left: 185px;
+  }
+}
 /* Start Animations */
 .start #menu {
   width: 150px;
   height: 150px;
   bottom: 50%;
   left: 50%;
-  margin: 0 0 25px -25px;
+  margin: 0 0 5px -50px;
   /* Animations */
 
   -webkit-transition: all 0.3s ease-in 0.3s;
@@ -1255,15 +1269,31 @@ body {
 #treeSVG .branch {
   position: relative;
 }
+.bottomVertLine {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 3px;
+  min-height: 30%;
+  background-color: #FFF;
+  margin-left: -1px;
+}
 .thumb {
   position: absolute;
   width: 44px;
   height: 44px;
   border-radius: 20px;
-  background-color: #4c4b74;
+  background-color: rgba(76, 75, 116, 0.7);
   transition: all .1s .05s;
   -webkit-transition: all .1s .05s;
   background-size: cover;
+  text-align: center;
+}
+.thumb span {
+  opacity: 0.5;
+}
+body:not(.branches_map) .thumb span {
+  display: none;
 }
 .thumb:hover {
   cursor: pointer;
@@ -1283,7 +1313,7 @@ body {
 }
 .modal-backdrop,
 .modal-backdrop.fade.in {
-  opacity: 0.2;
+  opacity: 0.5;
   filter: alpha(opacity=80);
 }
 .modal {
