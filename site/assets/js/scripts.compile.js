@@ -2,13 +2,15 @@
  * SITE BUILT FOR SHANEEDELMAN, by Chuck Norton, 2013
  */
 
-// @codekit-prepend "n.jquery.js";
+// @codekit-prepend "n.jquery-1.10.0.js";
 // @codekit-prepend "n.bootstrap.js";
 // @codekit-prepend "n.underscore.js";
 // @codekit-prepend "n.get_metrics.js";
 // @codekit-prepend "n.mediaelement-and-player.js";
 // @codekit-prepend "n.fittext.js";
 // @codekit-prepend "n.plugins.js";
+
+
 
 /* Shane E Main Scripts ... */
 
@@ -105,14 +107,40 @@
 	
 	$.se.tree.createWorkBranches = function() {
 		$('#treeWork .item').each(function(i) { // Find each item
-			var workBranch	=	$(this).data('branch_attach'); 
+			var $this 		=	$(this)
+				innerMedia	=	$(this)[0],
+				workBranch	=	$(this).data('branch_attach'), 
+				workType	=	$(this).data('type');
 			$.se.tree.branch[workBranch] = $(this).find('.thumb').detach();	// Cache each item
-			$.se.tree.branch[workBranch].type = $(this).data('type');
-			setWorkThumbPositions(workBranch);
-			setModalSizes(workBranch);
-			setModalDefaults(workBranch);
+			$.se.tree.branch[workBranch].type = workType;
+			
 
+			if (workType == 'image') { // for images we'll check to see if it's downloaded first
+				
+				$.se.tree.branch[workBranch].img 		= 	new Image();
+ 				$.se.tree.branch[workBranch].img.src 	=	$this.find('img').attr('src');
+				$.se.tree.branch[workBranch].img.onLoad = 	imageLoaded();
+
+				function imageLoaded()
+				{    
+				  	setWorkThumbPositions(workBranch);
+					setModalSizes(workBranch);
+					setModalDefaults(workBranch);
+				}
+
+				
+						
+			} else { // other media like videos we'll go ahead & load
+				setWorkThumbPositions(workBranch);
+				setModalSizes(workBranch);
+				setModalDefaults(workBranch);
+			}
+
+			
 		});
+
+
+
 	}
 
 	var resetWorkBranches = function() {
@@ -133,7 +161,8 @@
 			tX			=	$.se.tree.meta[workBranch].pos_end.x,
 			tY			=	$.se.tree.meta[workBranch].pos_end.y,
 			tWidthDif	=	$.se.tree.meta.widthDif,
-			tHeightDif	=	$.se.tree.meta.heightDif;
+			tHeightDif	=	$.se.tree.meta.heightDif,
+			workType	=	$.se.tree.branch[workBranch].type;
 
 			//console.log('tWidthDif: ' + tWidthDif);
 		thumb.appendTo('#tree'); // Add to Dom (this allows us to change after resize w same function)
@@ -145,6 +174,7 @@
 		 	'left'			: 	(tX - tWidthHalf + tWidthDif),
 		 	'border-radius'	: 	tWidthHalf
 		});	
+		thumb.addClass(workType);
 
 		//console.log('$.se.tree.meta[workBranch].pos_end.y: ' + $.se.tree.meta[workBranch].pos_end.y);
 		//console.log( ($.se.tree.meta[workBranch].pos_end.x * tHeightDif) - tWidthHalf );
@@ -255,8 +285,15 @@
 			var video 		=	$('#'+workBranch+'_modal video'),
 				videoWidth 	=	video.attr('width'),
 				videoHeight =	video.attr('height'),
-				videoRatio	=	(videoWidth / videoHeight),
+				videoRatio	=	(videoWidth / videoHeight);
+
+			if (videoRatio < 1) { // If horizontal vid
+				modalHeight = 	Math.min(videoHeight,(winHeight * 0.9) );// set by height
+				modalWidth	= 	(modalHeight * videoRatio);
+			} else {
+				modalWidth  = 	Math.min(videoWidth,(winWidth * 0.9) );// set by width
 				modalHeight	=	(modalWidth / videoRatio);
+			}
 		}
 
 
@@ -300,11 +337,10 @@
 	}
 
 	var getImageData 	= function(workBranch) {
-			//+ maybe figure out images real sizes... http://stackoverflow.com/questions/318630/get-real-image-width-and-height-with-javascript-in-safari-chrome
 			var img 		=	$('#'+workBranch+'_modal img')[0],
 				imgWidth,
 				imgHeight;
-			var t = new Image();
+			var t = $.se.tree.branch[workBranch].img;
 			t.src = (img.getAttribute ? img.getAttribute("src") : false) || img.src;
     		$.se.tree.branch[workBranch].imgWidth = t.width;
     		$.se.tree.branch[workBranch].imgHeight = t.height;
@@ -316,16 +352,26 @@
 			modalWidth	=	$.se.tree.branch[workBranch].width,
 			modalHeight	=	$.se.tree.branch[workBranch].height;
 
+
+		$('#'+workBranch+'_modal').on('shown', function() { // on Image Opened
+			$('#'+workBranch+'_modal,.modal-backdrop').addClass('fadeIn');
+		});
+		$('#'+workBranch+'_modal').on('hide', function() { // on Video Closing
+			$('#'+workBranch+'_modal,.modal-backdrop').removeClass('fadeIn');
+		});
+		$('#'+workBranch+'_modal').on('hidden', function() { // on Video Closed
+
+		});
+
+
 		// Change Size for each modal
-
-
-
 		if (workType == 'image') { // IMAGES
 			$('#'+workBranch+'_modal').on('show', function() { // on Image Opening
 				$(this).on('click', function(e) { // allow 'click image to close'
 					$(this).modal('hide');
 				});
 			});
+
 
 		} else if (workType == 'video') { // VIDEOS
 			var video 		=	$('#'+workBranch+'_modal video'),
@@ -456,13 +502,12 @@ $(function() {
     		100);
     	return;
   		} else {
-  			console.log('and go!');
+  			$('body').removeClass('loading');
 			$.se.init();
   		}
   	}
   	go();
 
-	
 	$(window).resize(function() {
 		$.se.resize();
 	});	
