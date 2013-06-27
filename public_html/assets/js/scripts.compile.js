@@ -174,6 +174,11 @@
 		 	'left'			: 	(tX - tWidthHalf + tWidthDif),
 		 	'border-radius'	: 	tWidthHalf
 		});	
+		thumb.find('.overlay').css({
+			'width'			: 	tWidth,
+			'height'		: 	tWidth,
+			'border-radius'	: 	tWidthHalf * 1.2
+		});
 		thumb.addClass(workType);
 
 		//console.log('$.se.tree.meta[workBranch].pos_end.y: ' + $.se.tree.meta[workBranch].pos_end.y);

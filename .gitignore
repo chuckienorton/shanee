@@ -1,11 +1,14 @@
 # Gitignore for Shane E
 
 
+/*
+!public_html
+
 !.gitignore
 !.gitkeep
 
 
-site/media
+public_html/media
 
 Thumbs.db
 .DS_Store
