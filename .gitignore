@@ -3,6 +3,7 @@
 
 /*
 !public_html
+public_html/samedreamasyou
 
 !.gitignore
 !.gitkeep
@@ -11,8 +12,12 @@
 public_html/media
 public_html/.media
 
+
+# General Ignored Stuffs
+error_logs
+error_log
+php.ini
 Thumbs.db
 .DS_Store
-
 .rbenv-version
 .rvmrc

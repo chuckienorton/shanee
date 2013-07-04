@@ -1,3 +1,5 @@
+# Use PHP5.4 as default
+AddHandler application/x-httpd-php54 .php
 # Apache configuration file
 # httpd.apache.org/docs/2.2/mod/quickreference.html
 
@@ -330,7 +332,9 @@ FileETag None
 # performance impact: http://goo.gl/Mluzd
 
 <IfModule mod_rewrite.c>
-  Options +FollowSymlinks
+# For security reasons, Option followsymlinks cannot be overridden.
+#  Options +FollowSymlinks
+  Options +SymLinksIfOwnerMatch
 # Options +SymLinksIfOwnerMatch
   RewriteEngine On
 # RewriteBase /
