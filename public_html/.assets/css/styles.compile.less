@@ -236,12 +236,15 @@ body.loading {
 
 /* Tree of Work */
 #tree {
-	margin:0 auto;
+	margin:auto;
 	position:relative;
+  display:block;
 }
 #treeSVG { 
-	position:absolute; bottom:0; left:0;
-
+  display:block;
+	// position:absolute; 
+ //  bottom:0; 
+ //  left:0;
 	.branch {
 		position:relative; 
 	}
@@ -471,4 +474,11 @@ body:not(.branches_map) .thumb span {
 		opacity:.9;
 	}
 }
+
+.no-video .thumb {
+  display:none;
+}
+
+
+
 

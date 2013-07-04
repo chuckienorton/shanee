@@ -1297,13 +1297,12 @@ body.loading #menu {
 }
 /* Tree of Work */
 #tree {
-  margin: 0 auto;
+  margin: auto;
   position: relative;
+  display: block;
 }
 #treeSVG {
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  display: block;
 }
 #treeSVG .branch {
   position: relative;
@@ -1474,4 +1473,7 @@ body:not(.branches_map) .thumb span {
 }
 .media_img:hover .modal_close {
   opacity: .9;
+}
+.no-video .thumb {
+  display: none;
 }

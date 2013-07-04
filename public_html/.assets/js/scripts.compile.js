@@ -40,15 +40,11 @@
 	}
 
 	var launchStart	=	function() {
-		$(document).on('click', '#startS', function() {
-			//e.preventDefault();
-			$('body').toggleClass('start').toggleClass('work');
-			
-			// window.setTimeout(function() {
-			// 	$('body').removeClass('transition');
-			// },1000);
-
-		})
+		$('body').on('click', '#menu', function(e) {
+			e.preventDefault();
+			e.stopPropagation(); // stop event bubbling	
+			$('body').toggleClass('start').toggleClass('work');	
+		});
 	}
 
 	var fonts 	=	function() {
@@ -63,46 +59,63 @@
 	}
 
 	var createTree = function() {
-		treeMeta(); // Grab Tree information
-		setTreeSize();
-		$.se.tree.createWorkBranches();
+		//treeMeta(); // Grab Tree information
+		setTreeSize();		
+		$.se.tree.createWorkBranches();	
+		
 	}
 
 	var setTreeSize = function()	{
-		var scale	=	$.se.tree.meta.scale,
+		var winHeight 	=	$.se.win.height,
+			winWidth	=	$(window).width(),
+			winBoth		=	[{name : 'h', size : winHeight}, {name : 'w', size : winWidth}],
+			winMin 		= 	_.min(winBoth, function(winMinSize){ return winMinSize.size; }),
+			winMinName	= 	winMin.name,
+			winMinSize	=	winMin.size,
+		 	scale	=	$('#treeSVG').attr('scale'),
 			width,
 			height,
 			tWidthDif,
 			tHeightDiff,
-			winHeight 	=	$.se.win.height,
 			tOffset 	=	(winHeight * .1);
-			console.log('tOffset: ' + tOffset);
+			//console.log('tOffset: ' + tOffset);
 
-		if ( $.se.win.minName == 'h') { // height is smaller
-			height 		=	$.se.win.minSize;
+		if ( winMinName == 'h') { // height is smaller
+			height 		=	winMinSize;
 			width 		=	height * scale;
 			tWidthDif	=	661 / width;
 			tHeightDiff	=	533 / height;
 		} else { // width is smaller
-			width 		=	$.se.win.minSize;
+			width 		=	winMinSize;
 			height 		=	width / scale;
 			tWidthDif	=	661 / width;
 			tHeightDiff	=	533 / height;
 		}
-		// console.log('tWidthDif: ' + tWidthDif);
 
-		// console.log('width: ' + width + '; height: ' + height );
 		// set the svg tree size
 		$('#tree').width(width).height(height);
 		$('#tree').css({
 			'top'	: 	tOffset
 		});
+		$('#treeSVG').width(width).height(height);
 		$('#treeSVG').attr('width',width).attr('height',height);
 		// set global vars...
 		$.se.tree.width 			=	width;
 		$.se.tree.height 			=	height;
 		$.se.tree.meta.widthDif		=	tWidthDif;
 		$.se.tree.meta.heightDif	=	tHeightDiff;
+		$.se.win.minName 			=	winMinName;
+		$.se.win.minSize 			=	winMinSize;
+		$.se.tree.meta.height 		= 	height;
+		$.se.tree.meta.scale 		=  	scale;
+		//$.se.tree.meta.width 		= 	( $.se.tree.meta.height * $.se.tree.meta.scale);
+		$.se.tree.meta.width 		=	width;
+		//$.se.tree
+		//console.log( $.se.tree.meta.height );
+
+
+
+
 	}
 	
 	$.se.tree.createWorkBranches = function() {
@@ -119,22 +132,30 @@
 				
 				$.se.tree.branch[workBranch].img 		= 	new Image();
  				$.se.tree.branch[workBranch].img.src 	=	$this.find('img').attr('src');
-				$.se.tree.branch[workBranch].img.onLoad = 	imageLoaded();
-
-				function imageLoaded()
-				{    
-				  	setWorkThumbPositions(workBranch);
-					setModalSizes(workBranch);
-					setModalDefaults(workBranch);
-				}
-
 				
-						
-			} else { // other media like videos we'll go ahead & load
+				//+ This bad boy is messing up firefox, dang it. 
+				//$.se.tree.branch[workBranch].img.onLoad = 	imageLoaded();
+				// var imageLoaded = function() {
+				// 	setWorkThumbPositions(workBranch);
+				// 	setModalSizes(workBranch);
+				// 	setModalDefaults(workBranch);
+				// }
+
 				setWorkThumbPositions(workBranch);
 				setModalSizes(workBranch);
 				setModalDefaults(workBranch);
-			}
+
+			 } else if (workType == 'video')  { // other media like videos we'll go ahead & load
+			 	if (Modernizr.video.h264) { // Check to see that h264 works! 
+			 		setWorkThumbPositions(workBranch);
+			 		setModalSizes(workBranch);
+			 		setModalDefaults(workBranch);
+			 	}
+			 } else {
+			 	setWorkThumbPositions(workBranch);
+			 	setModalSizes(workBranch);
+			 	setModalDefaults(workBranch);
+			 }
 
 			
 		});
@@ -155,7 +176,7 @@
 
 	var setWorkThumbPositions = function(workBranch) {
 		$.se.tree.x_y(workBranch); // set coordinates for this item
-		var thumb 		= $.se.tree.branch[workBranch],
+		var thumb 		= 	$.se.tree.branch[workBranch],
 			tWidth		=	$.se.tree.meta.width * .05,
 			tWidthHalf	=	tWidth / 2,
 			tX			=	$.se.tree.meta[workBranch].pos_end.x,
@@ -164,7 +185,10 @@
 			tHeightDif	=	$.se.tree.meta.heightDif,
 			workType	=	$.se.tree.branch[workBranch].type;
 
-			//console.log('tWidthDif: ' + tWidthDif);
+		//console.log('$.se.tree.meta.width: ' + $.se.tree.meta.width);
+		// console.log('tWidth: ' + tWidth);
+		// console.log('tWidthHalf: ' + tWidthHalf);
+		// console.log('tWidthDif: ' + tWidthDif);
 		thumb.appendTo('#tree'); // Add to Dom (this allows us to change after resize w same function)
 		thumb = $('#'+workBranch+'_thumb'); // REset thumb to dom now. 
 		thumb.css({
@@ -194,59 +218,70 @@
 
 	// Grab meta & coordinates for each work tree object
 	var treeMeta = function() {
-		var winHeight 	=	$.se.win.height,
-			winWidth	=	$(window).width(),
-			winBoth		=	[{name : 'h', size : winHeight}, {name : 'w', size : winWidth}],
-			winMin 		= 	_.min(winBoth, function(winMinSize){ return winMinSize.size; }),
-			winMinName	= 	winMin.name,
-			winMinSize	=	winMin.size;
-	
-		$.se.win.minName 	=	winMinName;
-		$.se.win.minSize 	=	winMinSize;
-		//console.log('name: '+ winMinName + '; size: '+ winMinSize);
-		$.se.tree.meta.height = $('#tree svg').height();
-		$.se.tree.meta.scale = $('#tree svg').attr('scale');
-		$.se.tree.meta.width = ( $.se.tree.meta.height * $.se.tree.meta.scale);
-		$.se.tree
-		//console.log( $.se.tree.meta.height );
+		// var winHeight 	=	$.se.win.height,
+		// 	winWidth	=	$(window).width(),
+		// 	winBoth		=	[{name : 'h', size : winHeight}, {name : 'w', size : winWidth}],
+		// 	winMin 		= 	_.min(winBoth, function(winMinSize){ return winMinSize.size; }),
+		// 	winMinName	= 	winMin.name,
+		// 	winMinSize	=	winMin.size;
+		// //console.log('winMin: ' + winMin);
+		// $.se.win.minName 	=	winMinName;
+		// $.se.win.minSize 	=	winMinSize;
+		// //console.log('name: '+ winMinName + '; size: '+ winMinSize);
+		// $.se.tree.meta.height = $('#treeSVG').height();
+		// $.se.tree.meta.scale = $('#treeSVG').attr('scale');
+		// $.se.tree.meta.width = ( $.se.tree.meta.height * $.se.tree.meta.scale);
+		// //$.se.tree
+		// //console.log( $.se.tree.meta.height );
 	}
-
 
 	$.se.tree.x_y = function(workBranch) { // set coordinates for any item
 		$('#tree .branch[data-branch="'+workBranch+'"]').each(function(i) {
 			var it 				=	$(this).data('branch'),
 				pos 			=	$(this).position(),
+				posOffset 		=	$(this).offset(),
+				// posHack 		=	$(this).positionHack(), this didn't fix the FF problem. 
 				side			=	$(this).data('branch_end_side'),
 				stroke			=	3,
-				width			=	$(this)[0].getBBox().width,
-				height			=	$(this)[0].getBBox().height,
-				widthOffset		=	(width / $.se.tree.meta.widthDif) + stroke,
-				heightOffset	=	(height / $.se.tree.meta.heightDif) + stroke,
+				getBBox			=	$(this)[0].getBBox(),
+				widthOffset		=	(getBBox.width / $.se.tree.meta.widthDif) + stroke,
+				heightOffset	=	(getBBox.height / $.se.tree.meta.heightDif) + stroke,
 				pos_end;
 
+			// translate quickly for fixing FF bug
+			// pLeft 	= 	getBBox.x;
+			// pTop 	=	getBBox.y;
+			// pLeft 	= 	posOffset.left;
+			// pTop 	=	posOffset.top;
+			pLeft 	= 	pos.left;
+			pTop 	=	pos.top;
+
+			console.log( it + ' : ' + posOffset.left  );
+			//console.log(it + ' pos.left: ' + pos.left);
+			//console.log(it + ' offsetParent.left: '+  $(this).offsetParent()  );
 			$.se.tree.meta[it] = new Object();
 			$.se.tree.meta[it].end_side = side;	
 			$.se.tree.meta[it].position = pos;
 			$.se.tree.meta[it].pos_end = new Object();
 			
 			if (side == 'TR') { 		// Top Right
-				$.se.tree.meta[it].pos_end.y = pos.top;
-				$.se.tree.meta[it].pos_end.x = pos.left + widthOffset;
+				$.se.tree.meta[it].pos_end.y = pTop;
+				$.se.tree.meta[it].pos_end.x = pLeft + widthOffset;
 			} else if (side == 'TM') {	// Top Middle
-				$.se.tree.meta[it].pos_end.y = pos.top + widthOffset;
-				$.se.tree.meta[it].pos_end.x = pos.left + widthOffset;
+				$.se.tree.meta[it].pos_end.y = pTop + widthOffset;
+				$.se.tree.meta[it].pos_end.x = pLeft + widthOffset;
 			} else if (side == 'BR') {	// Bottom Right
-				$.se.tree.meta[it].pos_end.y = pos.top + widthOffset;
-				$.se.tree.meta[it].pos_end.x = pos.left + widthOffset;
+				$.se.tree.meta[it].pos_end.y = pTop + widthOffset;
+				$.se.tree.meta[it].pos_end.x = pLeft + widthOffset;
 			} else if (side == 'BL') {	// Bottom Left
-				$.se.tree.meta[it].pos_end.y = pos.top + heightOffset;
-				$.se.tree.meta[it].pos_end.x = pos.left;
+				$.se.tree.meta[it].pos_end.y = pTop + heightOffset;
+				$.se.tree.meta[it].pos_end.x = pLeft;
 			} else if (side == 'MR') {	// Middle Right
-				$.se.tree.meta[it].pos_end.y = pos.top + (heightOffset / 2);
-				$.se.tree.meta[it].pos_end.x = pos.left + widthOffset;
-			} else { 					// default side 'TL'
-				$.se.tree.meta[it].pos_end.y = pos.top;
-				$.se.tree.meta[it].pos_end.x = pos.left;
+				$.se.tree.meta[it].pos_end.y = pTop + (heightOffset / 2);
+				$.se.tree.meta[it].pos_end.x = pLeft + widthOffset;
+			} else { // default side 'TL'
+				$.se.tree.meta[it].pos_end.y = pTop;
+				$.se.tree.meta[it].pos_end.x = pLeft;
 			} 
 
 		});	
@@ -392,6 +427,8 @@
 			// Create VIDEO object: 
 			$.se.tree.branch[workBranch].player = new MediaElementPlayer('#'+workBranch+'_modal video', 
 				{
+					// shows debug errors on screen
+    				enablePluginDebug: true,
 					// if the <video width> is not specified, this is the default
 					 defaultVideoWidth: modalWidth,
 				    // if the <video height> is not specified, this is the default
@@ -439,7 +476,7 @@
 				    // specify to force MediaElement to use a particular video or audio type
 				    type: '',
 				    // path to Flash and Silverlight plugins
-				    pluginPath: '/assets/player/',
+				    pluginPath: '/.assets/player/',
 				    // name of flash file
 				    flashName: 'flashmediaelement.swf',
 				    // name of silverlight file
@@ -450,7 +487,7 @@
 				        //    e.preventDefault();
 				        //    //console.log('paused: ');
 				        // }, false);
-				       mediaElement.player.load(); // Load Video
+				       mediaElement.player.play(); // Load Video
 				    },
 				    error: function () {  // fires when a problem is detected
 				     	console.log('error!');
@@ -497,6 +534,19 @@
 	}	
 
 
+	$.fn.positionHack = function() {
+	    var t = $(this), p = t.position();
+	    (t.css("-moz-transform") || "").replace(/matrix\(([^\)]+)\)/,
+	        function(str, mozmat) {
+	            var mozarr = mozmat.split(",");
+	            p.left += parseInt(mozarr[4]);
+	            p.top += parseInt(mozarr[5]);
+	    });
+	    return p;
+	};
+
+
+
 
 $(function() {
 	
@@ -512,11 +562,14 @@ $(function() {
   		}
   	}
   	go();
-
 	$(window).resize(function() {
 		$.se.resize();
 	});	
-
+	// if (Modernizr.video.h264) {
+	// 	alert('h264!');
+	// } else {
+	// 	alert('	');
+	// }
 	//console.log( 'x: '+ $.se.tree.meta.t12.pos_end.x + ', y: '+ $.se.tree.meta.t12.pos_end.y );
 
 });
