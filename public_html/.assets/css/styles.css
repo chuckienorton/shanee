@@ -1257,7 +1257,7 @@ body.loading #menu {
   height: 150px;
   bottom: 50%;
   left: 50%;
-  margin: 0 0 5px -50px;
+  margin: 0 0 5px -75px;
   /* Animations */
 
   -webkit-transition: all 0.3s ease-in 0.3s;
@@ -1475,5 +1475,10 @@ body:not(.branches_map) .thumb span {
   opacity: .9;
 }
 .no-video .thumb {
+  display: none;
+}
+.lt-ie9 #menu #startS,
+.lt-ie9 #menu .text,
+.lt-ie9 #menu .name {
   display: none;
 }
