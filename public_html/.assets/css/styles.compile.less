@@ -8,6 +8,8 @@
 @red1:    #f26c4f;
 @red2:    #dc644a;
 @yellow1: #dde00a;
+@yellow2: #fff452;
+@yellow3: #dbc701;
 @font1:   'Code-Pro';
 @font2:   'Code-Pro-Light-Demo';
 @font3:   'Code-Pro-Light';
@@ -42,6 +44,16 @@ body {
 .font4 {
   font-family: @font4, 'arial', sans-serif; 
 }   
+
+.whiteBG {
+  background-color: #FFF;
+  color:#000;
+}
+
+.centered {
+  text-align: center;
+}
+
 
 /* StartS */
 #menu {
@@ -114,18 +126,43 @@ body {
       width:15px;
 
     }
-
   }
 
   .name {
     position:absolute;
-    top:159px;
+    top:143px;
     left:236px;
     font-size:148%;
+    width:300px;
 
-  }  
-
+    .info {
+      display:inline-block;
+      width:34px;
+      position: relative;
+      text-decoration: none;
+      font-size:160%;
+      padding:0 0 0 2%;
+      color:@yellow2;
+      z-index:1000;
+      &:hover {
+        color:@yellow3;
+        cursor:pointer;
+      }
+    }  
+  }
 }
+
+.email {
+  color:black;
+  font-size:180%;
+  margin:3% 0;
+
+  a {
+    color:black;
+    text-decoration: none;
+  }
+}
+
 
 @media screen and (max-width: 750px), screen and (max-height: 535px) {
     #menu {
@@ -384,6 +421,7 @@ body:not(.branches_map) .thumb span {
   outline: none;
   opacity:0;
 }
+
 .modal.in {
    -webkit-transition: opacity .3s ease-out;
       -moz-transition: opacity .3s ease-out;
@@ -457,10 +495,47 @@ body:not(.branches_map) .thumb span {
 	line-height: 105%;
 }
 
+
+.media_text {
+  
+  height:75%;
+  font-family: @font4;
+  font-size:120%;
+  line-height: 153%;
+  width: 750px;
+  margin-left: -375px;
+
+  .modal_close {
+    opacity:0.7;
+    z-index: 10000;
+
+    &:hover {
+      cursor: pointer;
+      opacity:1;
+    }
+  }
+
+  .centerText {
+    width: 70%;
+    margin:0 auto;
+    padding:16% 0;
+  }
+
+}
+
+@media screen and (max-width: 750px), screen and (max-height: 535px) {
+  .media_text {
+    height:75%;
+    font-size:120%;
+    line-height: 153%;
+  }
+} 
+
+
 /* Media IMAGE modals can click anywhere to close */
 .media_img {
 	.modal_close {
-		opacity:0.2;
+		opacity:0.8;
     z-index: 10000;
 	}
 	img {

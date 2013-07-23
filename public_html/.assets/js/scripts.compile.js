@@ -9,6 +9,7 @@
 // @codekit-prepend "n.mediaelement-and-player.js";
 // @codekit-prepend "n.fittext.js";
 // @codekit-prepend "n.plugins.js";
+// @codekit-prepend "n.nortBootstrap.js";
 
 
 
@@ -19,11 +20,13 @@
 	$.se.tree.meta = new Object(); // For tree meta info
 	$.se.tree.branch = new Object(); // For each branch with work. 
 	$.se.win = new Object();
+
 	$.se.init = function() {
 		setBrowserInfo(); 
 		fonts();
 		createTree(); // Create Tree
 		startWorkModal(); // Start Work Modals
+		startInfoModal();
 		launchStart();
 	}
 
@@ -34,19 +37,44 @@
 	}
 
 	var setBrowserInfo	=	function() {
-		$.se.win.height =	$(window).height();
-		$.se.win.width =	$(window).width();
-		//console.log( $.se.win.width );
+		// Modernizr.addTest('onLine', 'onLine' in window.navigator); doesn't work! 
+		var onLine	= window.navigator.onLine;
 
 		// Webkit detection script
 		Modernizr.addTest('webkit', function(){
 			return RegExp(" AppleWebKit/").test(navigator.userAgent);
 		});
-
 		// Mobile Webkit
 		Modernizr.addTest('mobile', function(){
 			return RegExp(" Mobile/").test(navigator.userAgent);
 		});
+
+		// URL Information THIS DOESN'T WORK BECAUSE OF Access-Control-Allow-Origin errors by main browsers
+		// var thisUrlRoot 	=	window.location.href,
+		// 	thisUrlRootMinusIndex = thisUrlRoot.substring(0, thisUrlRoot.lastIndexOf("index")),
+		// 	liveUrlRoot		=	'http://shane.do/',
+		// 	urlPath;
+		
+		// if (thisUrlRootMinusIndex) {thisUrlRoot = thisUrlRootMinusIndex}
+		// Set Global info
+		// if (onLine && (thisUrlRoot != liveUrlRoot)) { // we're local + we have internet
+		// 	// go online to check for any updates to app
+
+		// 	$.ajax({
+		// 	    url: liveUrlRoot,
+		// 	    dataType: 'html',
+		// 	    success: function(html) {
+		// 	        $.se.tree.work = $('#treeWork', $(html)).addClass('done');
+		// 	        console.log($.se.tree.work);
+		// 	    }
+		// 	});
+		// } 
+
+		$.se.win.onLine	= 	onLine;
+		$.se.win.height =	$(window).height();
+		$.se.win.width =	$(window).width();
+
+
 
 	}
 
@@ -597,6 +625,23 @@
 			$('#'+workBranch+'_modal').modal('toggle');
 		});
 	}	
+
+	var startInfoModal = function() {
+		$('.info').on('click', function (e) { // Show Modal on Thumb Click
+			e.preventDefault();
+			$('#infoModal').modal('show');
+			
+		});
+
+		$('#infoModal').on('shown', function() { // on Opened
+			$('#infoModal,.modal-backdrop').addClass('fadeIn');
+		});
+		$('#infoModal').on('hide', function() { // on Video Closing
+			$('#infoModal,.modal-backdrop').removeClass('fadeIn');
+		});
+
+	}	
+
 
 
 	$.fn.positionHack = function() {
