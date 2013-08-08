@@ -1188,10 +1188,12 @@ body {
   font-size: 1480%;
 }
 #menu .text {
+  /* turning off! */
+
+  display: none;
   position: absolute;
   left: 119px;
   top: 45px;
-  display: block;
   font-size: 170%;
   width: 100px;
   color: #1e1d1e;
@@ -1228,8 +1230,8 @@ body {
 }
 #menu .name {
   position: absolute;
-  top: 143px;
-  left: 236px;
+  top: 132px;
+  left: 88px;
   font-size: 148%;
   width: 300px;
 }
@@ -1277,8 +1279,8 @@ body {
     font-size: 427%;
   }
   #menu .name {
-    top: 110px;
-    left: 175px;
+    top: 113px;
+    left: 64px;
   }
 }
 /* Start Animations */
