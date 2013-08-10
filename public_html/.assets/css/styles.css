@@ -1362,10 +1362,11 @@ body.loading #menu {
   height: 44px;
   border-radius: 20px;
   background-color: rgba(76, 75, 116, 0.7);
-  transition: all .3s;
-  -webkit-transition: all .3s;
+  transition: all 1s;
+  -webkit-transition: all 1s;
   background-size: cover;
   text-align: center;
+  opacity: 1;
 }
 .thumb span {
   opacity: 0.5;
@@ -1388,6 +1389,9 @@ body:not(.branches_map) .thumb span {
 }
 .thumb:hover {
   cursor: pointer;
+}
+.thumb.loading {
+  opacity: 0;
 }
 /* Modals */
 .modal-backdrop {

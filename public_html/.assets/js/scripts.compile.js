@@ -24,10 +24,11 @@
 	$.se.init = function() {
 		setBrowserInfo(); 
 		fonts();
-		createTree(); // Create Tree
-		startWorkModal(); // Start Work Modals
-		startInfoModal();
 		launchStart();
+		startInfoModal();				
+		startWorkModal(); // Start Work Modals
+		createTree(); // Create Tree	
+
 	}
 
 	$.se.resize = function() { // resizing the browser
@@ -79,6 +80,7 @@
 	}
 
 	var launchStart	=	function() {
+		$('body').removeClass('loading');
 		$('body').on('click', '#startS', function(e) {
 			e.preventDefault();
 			e.stopPropagation(); // stop event bubbling	
@@ -138,13 +140,24 @@
 		tWidthDif	=	661 / width;
 		tHeightDiff	=	533 / height;
 
-
+		// **************** to reset for non-flexblox - aka firefox & ie //
 		// This is used for viewing the entire $.se.tree.meta on screen. 
 		// Simply set the width/height you want here:
+			
+			// largest
+			// width 	= 	1010.6;
+			// height 	=	815;
+			// medium
+			// width 	= 	652.24;
+			// height 	=	526;
+			// smallest
 			// width 	= 	320;
 			// height 	=	258;
+
+
 			// tWidthDif	=	661 / width;
 			// tHeightDiff	=	533 / height;
+		
 		// and then print JSON.stringify($.se.tree.meta) in console log of browser. 
 		// Copy that below to the manual width/height you want to use. 
 
@@ -169,21 +182,21 @@
 			if (width > 1050) {
 				width 	= 	1010.6;
 				height 	=	815;
-				$.se.tree.meta =  $.parseJSON('{"widthDif":0.6540668909558678,"heightDif":0.6539877300613497,"height":815,"scale":"1.24","width":1010.6,"t1":{"position":{"top":46.93818664550781,"left":226.8515625},"pos_end":{"y":46.93818664550781,"x":226.8515625}},"t2":{"end_side":"TR","position":{"top":62.736175537109375,"left":506.7677001953125},"pos_end":{"y":62.736175537109375,"x":699.0205094930444}},"t3":{"end_side":"TL","position":{"top":35.216217041015625,"left":301.7669677734375},"pos_end":{"y":35.216217041015625,"x":301.7669677734375}},"t9":{"end_side":"TL","position":{"top":285.95355224609375,"left":356.96435546875},"pos_end":{"y":285.95355224609375,"x":356.96435546875}},"t10":{"end_side":"TR","position":{"top":74.96725463867188,"left":506.7677001953125},"pos_end":{"y":74.96725463867188,"x":768.021115680181}},"t11":{"end_side":"TL","position":{"top":389.9652099609375,"left":412.9307861328125},"pos_end":{"y":389.9652099609375,"x":412.9307861328125}},"t12":{"end_side":"MR","position":{"top":316.23468017578125,"left":503.71142578125},"pos_end":{"y":357.6551511095344,"x":706.1787862942186}},"t13":{"end_side":"TR","position":{"top":24.134857177734375,"left":765.446044921875},"pos_end":{"y":24.134857177734375,"x":910.3198871745284}},"t14":{"end_side":"TL","position":{"top":245.1475830078125,"left":0},"pos_end":{"y":245.1475830078125,"x":0}},"t16":{"end_side":"TR","position":{"top":300.1324462890625,"left":169.85311889648438},"pos_end":{"y":300.1324462890625,"x":271.50052647208304}},"t17":{"end_side":"TR","position":{"top":119.82632446289062,"left":501.5908203125},"pos_end":{"y":119.82632446289062,"x":746.4972585242383}},"t18":{"end_side":"TL","position":{"top":114.51190185546875,"left":438.5303955078125},"pos_end":{"y":114.51190185546875,"x":438.5303955078125}},"t23":{"end_side":"TL","position":{"top":264.174560546875,"left":800.8228759765625},"pos_end":{"y":264.174560546875,"x":800.8228759765625}},"t24":{"end_side":"TR","position":{"top":268.0074768066406,"left":892.3909912109375},"pos_end":{"y":268.0074768066406,"x":987.4626265948551}},"t25":{"end_side":"TL","position":{"top":191.3338623046875,"left":29.032012939453125},"pos_end":{"y":191.3338623046875,"x":29.032012939453125}},"t28":{"end_side":"TL","position":{"top":177.60137939453125,"left":817.3974609375},"pos_end":{"y":177.60137939453125,"x":817.3974609375}},"t29":{"end_side":"TR","position":{"top":172.29005432128906,"left":962.828369140625},"pos_end":{"y":172.29005432128906,"x":1014.2362426203787}},"t30":{"end_side":"TL","position":{"top":65.09677124023438,"left":134.31112670898438},"pos_end":{"y":65.09677124023438,"x":134.31112670898438}},"t31":{"end_side":"BL","position":{"top":204.53271484375,"left":92.30343627929688},"pos_end":{"y":280.358238492182,"x":92.30343627929688}}}');
+				$.se.tree.meta =  $.parseJSON('{"widthDif":0.6540668909558678,"heightDif":0.6539877300613497,"height":815,"scale":"1.24","width":1010.6,"t23":{"end_side":"TL","position":{"top":264.174560546875,"left":800.8228759765625},"pos_end":{"y":264.174560546875,"x":800.8228759765625}},"t30":{"end_side":"TL","position":{"top":65.09677124023438,"left":134.31112670898438},"pos_end":{"y":65.09677124023438,"x":134.31112670898438}},"t31":{"end_side":"BL","position":{"top":204.53271484375,"left":92.30343627929688},"pos_end":{"y":280.358238492182,"x":92.30343627929688}},"t2":{"end_side":"TR","position":{"top":62.736175537109375,"left":506.7677001953125},"pos_end":{"y":62.736175537109375,"x":699.0205094930444}},"t10":{"end_side":"TR","position":{"top":74.96725463867188,"left":506.7677001953125},"pos_end":{"y":74.96725463867188,"x":768.021115680181}},"t1":{"position":{"top":46.93818664550781,"left":226.8515625},"pos_end":{"y":46.93818664550781,"x":226.8515625}},"t9":{"end_side":"TL","position":{"top":285.95355224609375,"left":356.96435546875},"pos_end":{"y":285.95355224609375,"x":356.96435546875}},"t11":{"end_side":"TL","position":{"top":389.9652099609375,"left":412.9307861328125},"pos_end":{"y":389.9652099609375,"x":412.9307861328125}},"t18":{"end_side":"TL","position":{"top":114.51190185546875,"left":438.5303955078125},"pos_end":{"y":114.51190185546875,"x":438.5303955078125}},"t3":{"end_side":"TL","position":{"top":35.216217041015625,"left":301.7669677734375},"pos_end":{"y":35.216217041015625,"x":301.7669677734375}},"t17":{"end_side":"TR","position":{"top":119.82632446289062,"left":501.5908203125},"pos_end":{"y":119.82632446289062,"x":746.4972585242383}},"t24":{"end_side":"TR","position":{"top":268.0074768066406,"left":892.3909912109375},"pos_end":{"y":268.0074768066406,"x":987.4626265948551}},"t25":{"end_side":"TL","position":{"top":191.33384704589844,"left":29.032012939453125},"pos_end":{"y":191.33384704589844,"x":29.032012939453125}},"t28":{"end_side":"TL","position":{"top":177.60137939453125,"left":817.3974609375},"pos_end":{"y":177.60137939453125,"x":817.3974609375}},"t19":{"end_side":"TL","position":{"top":348.3091735839844,"left":212.33782958984375},"pos_end":{"y":348.3091735839844,"x":212.33782958984375}},"t35":{"end_side":"TR","position":{"top":50.416404724121094,"left":407.0047607421875},"pos_end":{"y":50.416404724121094,"x":445.5393592915268}},"t29":{"end_side":"TR","position":{"top":172.29005432128906,"left":962.828369140625},"pos_end":{"y":172.29005432128906,"x":1014.2362426203787}},"t33":{"end_side":"TL","position":{"top":368.4996643066406,"left":23.168731689453125},"pos_end":{"y":368.4996643066406,"x":23.168731689453125}},"t37":{"end_side":"TR","position":{"top":81.51394653320312,"left":581.3467407226562},"pos_end":{"y":81.51394653320312,"x":639.3579147269614}},"t39":{"end_side":"TR","position":{"top":23.74957275390625,"left":246.78668212890625},"pos_end":{"y":23.74957275390625,"x":249.78668212890625}},"t38":{"end_side":"TR","position":{"top":0.05184173583984375,"left":504.353515625},"pos_end":{"y":0.05184173583984375,"x":589.3160939642232}},"t36":{"end_side":"TL","position":{"top":49.57856750488281,"left":534.980224609375},"pos_end":{"y":49.57856750488281,"x":534.980224609375}},"t14":{"end_side":"TL","position":{"top":245.1475830078125,"left":0},"pos_end":{"y":245.1475830078125,"x":0}},"t13":{"end_side":"TR","position":{"top":24.134857177734375,"left":765.446044921875},"pos_end":{"y":24.134857177734375,"x":910.3198871745284}},"t12":{"end_side":"MR","position":{"top":316.23468017578125,"left":503.71142578125},"pos_end":{"y":357.6551511095344,"x":706.1787862942186}},"t16":{"end_side":"TR","position":{"top":300.1324462890625,"left":169.85311889648438},"pos_end":{"y":300.1324462890625,"x":271.50052647208304}}}');
 				$.se.tree.meta.sizeOverride 	=	'L';
 				tOffset 	=	(winHeight * .2);
 				console.log('No Flexbox. Size: L');
 			} else if (width > 700) {
 				width 	= 	652.24;
 				height 	=	526;
-				$.se.tree.meta =  $.parseJSON('{"widthDif":1.0134306390285783,"heightDif":1.0133079847908746,"height":526,"scale":"1.24","width":652.24,"t1":{"position":{"top":30.294418334960938,"left":146.40936279296875},"pos_end":{"y":30.294418334960938,"x":146.40936279296875}},"t2":{"end_side":"TR","position":{"top":40.490386962890625,"left":327.06640625},"pos_end":{"y":40.490386962890625,"x":452.2099371587202}},"t3":{"end_side":"TL","position":{"top":22.729095458984375,"left":194.75958251953125},"pos_end":{"y":22.729095458984375,"x":194.75958251953125}},"t9":{"end_side":"TL","position":{"top":184.55426025390625,"left":230.3837890625},"pos_end":{"y":184.55426025390625,"x":230.3837890625}},"t10":{"end_side":"TR","position":{"top":48.384300231933594,"left":327.06640625},"pos_end":{"y":48.384300231933594,"x":496.74284372857767}},"t11":{"end_side":"TL","position":{"top":251.68310546875,"left":266.50433349609375},"pos_end":{"y":251.68310546875,"x":266.50433349609375}},"t12":{"end_side":"MR","position":{"top":204.09759521484375,"left":325.093994140625},"pos_end":{"y":231.3622181733151,"x":456.82998387046734}},"t13":{"end_side":"TR","position":{"top":15.57720947265625,"left":494.0167236328125},"pos_end":{"y":15.57720947265625,"x":588.581927344341}},"t14":{"end_side":"TL","position":{"top":158.21820068359375,"left":0},"pos_end":{"y":158.21820068359375,"x":0}},"t16":{"end_side":"TR","position":{"top":193.70526123046875,"left":109.62274169921875},"pos_end":{"y":193.70526123046875,"x":176.28965750874622}},"t17":{"end_side":"TR","position":{"top":77.33621215820312,"left":323.725341796875},"pos_end":{"y":77.33621215820312,"x":482.8514602010153}},"t18":{"end_side":"TL","position":{"top":73.90631103515625,"left":283.0262451171875},"pos_end":{"y":73.90631103515625,"x":283.0262451171875}},"t23":{"end_side":"TL","position":{"top":170.4981689453125,"left":516.848876953125},"pos_end":{"y":170.4981689453125,"x":516.848876953125}},"t24":{"end_side":"TR","position":{"top":172.97190856933594,"left":575.9466552734375},"pos_end":{"y":172.97190856933594,"x":638.3695757788862}},"t25":{"end_side":"TL","position":{"top":123.48696899414062,"left":18.7371826171875},"pos_end":{"y":123.48696899414062,"x":18.7371826171875}},"t28":{"end_side":"TL","position":{"top":114.62408447265625,"left":527.5460205078125},"pos_end":{"y":114.62408447265625,"x":527.5460205078125}},"t29":{"end_side":"TR","position":{"top":111.19615173339844,"left":621.40673828125},"pos_end":{"y":111.19615173339844,"x":655.6491204289192}},"t30":{"end_side":"TL","position":{"top":42.01392364501953,"left":86.68402099609375},"pos_end":{"y":42.01392364501953,"x":86.68402099609375}},"t31":{"end_side":"BL","position":{"top":132.0054931640625,"left":59.5723876953125},"pos_end":{"y":182.0069967702898,"x":59.5723876953125}}}');
+				$.se.tree.meta =  $.parseJSON('{"widthDif":1.0134306390285783,"heightDif":1.0133079847908746,"height":526,"scale":"1.24","width":652.24,"t23":{"end_side":"TL","position":{"top":170.4981689453125,"left":516.848876953125},"pos_end":{"y":170.4981689453125,"x":516.848876953125}},"t30":{"end_side":"TL","position":{"top":42.01392364501953,"left":86.68402099609375},"pos_end":{"y":42.01392364501953,"x":86.68402099609375}},"t31":{"end_side":"BL","position":{"top":132.0054931640625,"left":59.5723876953125},"pos_end":{"y":182.0069967702898,"x":59.5723876953125}},"t10":{"end_side":"TR","position":{"top":48.384300231933594,"left":327.06640625},"pos_end":{"y":48.384300231933594,"x":496.74284372857767}},"t2":{"end_side":"TR","position":{"top":40.490386962890625,"left":327.06640625},"pos_end":{"y":40.490386962890625,"x":452.2099371587202}},"t1":{"position":{"top":30.294418334960938,"left":146.40936279296875},"pos_end":{"y":30.294418334960938,"x":146.40936279296875}},"t11":{"end_side":"TL","position":{"top":251.68310546875,"left":266.50433349609375},"pos_end":{"y":251.68310546875,"x":266.50433349609375}},"t9":{"end_side":"TL","position":{"top":184.55426025390625,"left":230.3837890625},"pos_end":{"y":184.55426025390625,"x":230.3837890625}},"t3":{"end_side":"TL","position":{"top":22.729095458984375,"left":194.75958251953125},"pos_end":{"y":22.729095458984375,"x":194.75958251953125}},"t18":{"end_side":"TL","position":{"top":73.90631103515625,"left":283.0262451171875},"pos_end":{"y":73.90631103515625,"x":283.0262451171875}},"t17":{"end_side":"TR","position":{"top":77.33621215820312,"left":323.725341796875},"pos_end":{"y":77.33621215820312,"x":482.8514602010153}},"t24":{"end_side":"TR","position":{"top":172.97190856933594,"left":575.9466552734375},"pos_end":{"y":172.97190856933594,"x":638.3695757788862}},"t28":{"end_side":"TL","position":{"top":114.62408447265625,"left":527.5460205078125},"pos_end":{"y":114.62408447265625,"x":527.5460205078125}},"t25":{"end_side":"TL","position":{"top":123.48696899414062,"left":18.7371826171875},"pos_end":{"y":123.48696899414062,"x":18.7371826171875}},"t19":{"end_side":"TL","position":{"top":224.79840087890625,"left":137.042236328125},"pos_end":{"y":224.79840087890625,"x":137.042236328125}},"t29":{"end_side":"TR","position":{"top":111.19615173339844,"left":621.40673828125},"pos_end":{"y":111.19615173339844,"x":655.6491204289192}},"t33":{"end_side":"TL","position":{"top":237.82928466796875,"left":14.953033447265625},"pos_end":{"y":237.82928466796875,"x":14.953033447265625}},"t35":{"end_side":"TR","position":{"top":32.53924560546875,"left":262.67974853515625},"pos_end":{"y":32.53924560546875,"x":288.61373483816544}},"t37":{"end_side":"TR","position":{"top":52.609519958496094,"left":375.1995849609375},"pos_end":{"y":52.609519958496094,"x":413.703729164943}},"t39":{"end_side":"TR","position":{"top":15.32855224609375,"left":159.27545166015625},"pos_end":{"y":15.32855224609375,"x":162.27545166015625}},"t38":{"end_side":"TR","position":{"top":0.03409576416015625,"left":325.50836181640625},"pos_end":{"y":0.03409576416015625,"x":381.40690930896017}},"t36":{"end_side":"TL","position":{"top":31.998512268066406,"left":345.27471923828125},"pos_end":{"y":31.998512268066406,"x":345.27471923828125}},"t12":{"end_side":"MR","position":{"top":204.09759521484375,"left":325.093994140625},"pos_end":{"y":231.3622181733151,"x":456.82998387046734}},"t14":{"end_side":"TL","position":{"top":158.21820068359375,"left":0},"pos_end":{"y":158.21820068359375,"x":0}},"t13":{"end_side":"TR","position":{"top":15.57720947265625,"left":494.0167236328125},"pos_end":{"y":15.57720947265625,"x":588.581927344341}},"t16":{"end_side":"TR","position":{"top":193.70526123046875,"left":109.62274169921875},"pos_end":{"y":193.70526123046875,"x":176.28965750874622}}}');
 				$.se.tree.meta.sizeOverride 	=	'M';
 				tOffset 	=	(winHeight * .2);
 				console.log('No Flexbox. Size: M');
 			} else {
 				width 	= 	320;
 				height 	=	258;
-				$.se.tree.meta	=	$.parseJSON('{"widthDif":2.065625,"heightDif":2.065891472868217,"height":258,"scale":"1.24","width":320,"t1":{"position":{"top":14.844436645507812,"left":71.8428955078125},"pos_end":{"y":14.844436645507812,"x":71.8428955078125}},"t2":{"end_side":"TR","position":{"top":19.846153259277344,"left":160.4656982421875},"pos_end":{"y":19.846153259277344,"x":223.391384938481}},"t3":{"end_side":"TL","position":{"top":11.133209228515625,"left":95.56146240234375},"pos_end":{"y":11.133209228515625,"x":95.56146240234375}},"t9":{"end_side":"TL","position":{"top":90.517822265625,"left":113.0372314453125},"pos_end":{"y":90.517822265625,"x":113.0372314453125}},"t10":{"end_side":"TR","position":{"top":23.71857452392578,"left":160.4656982421875},"pos_end":{"y":23.71857452392578,"x":245.23998377074273}},"t11":{"end_side":"TL","position":{"top":123.44839477539062,"left":130.7564697265625},"pos_end":{"y":123.44839477539062,"x":130.7564697265625}},"t12":{"end_side":"MR","position":{"top":100.10496520996094,"left":159.498046875},"pos_end":{"y":114.24236582457236,"x":225.65810561649016}},"t13":{"end_side":"TR","position":{"top":7.624794006347656,"left":242.36444091796875},"pos_end":{"y":7.624794006347656,"x":290.28788196373273}},"t14":{"end_side":"TL","position":{"top":77.59844970703125,"left":0.0206298828125},"pos_end":{"y":77.59844970703125,"x":0.0206298828125}},"t16":{"end_side":"TR","position":{"top":95.00692749023438,"left":53.79693603515625},"pos_end":{"y":95.00692749023438,"x":88.03300413746337}},"t17":{"end_side":"TR","position":{"top":37.92115783691406,"left":158.82666015625},"pos_end":{"y":37.92115783691406,"x":238.42478031037257}},"t18":{"end_side":"TL","position":{"top":36.23859405517578,"left":138.8614501953125},"pos_end":{"y":36.23859405517578,"x":138.8614501953125}},"t23":{"end_side":"TL","position":{"top":83.62249755859375,"left":253.56494140625},"pos_end":{"y":83.62249755859375,"x":253.56494140625}},"t24":{"end_side":"TR","position":{"top":84.83601379394531,"left":282.5557861328125},"pos_end":{"y":84.83601379394531,"x":314.7096781997565}},"t25":{"end_side":"TL","position":{"top":60.56077575683594,"left":9.2122802734375},"pos_end":{"y":60.56077575683594,"x":9.2122802734375}},"t28":{"end_side":"TL","position":{"top":56.21302032470703,"left":258.8125},"pos_end":{"y":56.21302032470703,"x":258.8125}},"t29":{"end_side":"TR","position":{"top":54.53142547607422,"left":304.8565673828125},"pos_end":{"y":54.53142547607422,"x":323.18460964831934}},"t30":{"end_side":"TL","position":{"top":20.593536376953125,"left":42.544189453125},"pos_end":{"y":20.593536376953125,"x":42.544189453125}},"t31":{"end_side":"BL","position":{"top":64.73960876464844,"left":29.24432373046875},"pos_end":{"y":90.79357821409072,"x":29.24432373046875}}}');
+				$.se.tree.meta	=	$.parseJSON('{"widthDif":2.065625,"heightDif":2.065891472868217,"height":258,"scale":"1.24","width":320,"t23":{"end_side":"TL","position":{"top":83.62249755859375,"left":253.56494140625},"pos_end":{"y":83.62249755859375,"x":253.56494140625}},"t30":{"end_side":"TL","position":{"top":20.593536376953125,"left":42.544189453125},"pos_end":{"y":20.593536376953125,"x":42.544189453125}},"t31":{"end_side":"BL","position":{"top":64.73960876464844,"left":29.24432373046875},"pos_end":{"y":90.79357821409072,"x":29.24432373046875}},"t2":{"end_side":"TR","position":{"top":19.846153259277344,"left":160.4656982421875},"pos_end":{"y":19.846153259277344,"x":223.391384938481}},"t10":{"end_side":"TR","position":{"top":23.71857452392578,"left":160.4656982421875},"pos_end":{"y":23.71857452392578,"x":245.23998377074273}},"t1":{"position":{"top":14.844436645507812,"left":71.8428955078125},"pos_end":{"y":14.844436645507812,"x":71.8428955078125}},"t11":{"end_side":"TL","position":{"top":123.44839477539062,"left":130.7564697265625},"pos_end":{"y":123.44839477539062,"x":130.7564697265625}},"t9":{"end_side":"TL","position":{"top":90.517822265625,"left":113.0372314453125},"pos_end":{"y":90.517822265625,"x":113.0372314453125}},"t3":{"end_side":"TL","position":{"top":11.133209228515625,"left":95.56146240234375},"pos_end":{"y":11.133209228515625,"x":95.56146240234375}},"t18":{"end_side":"TL","position":{"top":36.23859405517578,"left":138.8614501953125},"pos_end":{"y":36.23859405517578,"x":138.8614501953125}},"t24":{"end_side":"TR","position":{"top":84.83601379394531,"left":282.5557861328125},"pos_end":{"y":84.83601379394531,"x":314.7096781997565}},"t19":{"end_side":"TL","position":{"top":110.25991821289062,"left":67.247802734375},"pos_end":{"y":110.25991821289062,"x":67.247802734375}},"t25":{"end_side":"TL","position":{"top":60.56077575683594,"left":9.2122802734375},"pos_end":{"y":60.56077575683594,"x":9.2122802734375}},"t28":{"end_side":"TL","position":{"top":56.21302032470703,"left":258.8125},"pos_end":{"y":56.21302032470703,"x":258.8125}},"t29":{"end_side":"TR","position":{"top":54.53142547607422,"left":304.8565673828125},"pos_end":{"y":54.53142547607422,"x":323.18460964831934}},"t17":{"end_side":"TR","position":{"top":37.92115783691406,"left":158.82666015625},"pos_end":{"y":37.92115783691406,"x":238.42478031037257}},"t33":{"end_side":"TL","position":{"top":116.65231323242188,"left":7.35595703125},"pos_end":{"y":116.65231323242188,"x":7.35595703125}},"t37":{"end_side":"TR","position":{"top":25.791290283203125,"left":184.0777587890625},"pos_end":{"y":25.791290283203125,"x":204.49669375975085}},"t35":{"end_side":"TR","position":{"top":15.945655822753906,"left":128.8802490234375},"pos_end":{"y":15.945655822753906,"x":143.13205145346777}},"t39":{"end_side":"TR","position":{"top":7.502815246582031,"left":78.15447998046875},"pos_end":{"y":7.502815246582031,"x":81.15447998046875}},"t36":{"end_side":"TL","position":{"top":15.680397033691406,"left":169.39788818359375},"pos_end":{"y":15.680397033691406,"x":169.39788818359375}},"t38":{"end_side":"TR","position":{"top":0,"left":159.70135498046875},"pos_end":{"y":0,"x":188.65427905384243}},"t14":{"end_side":"TL","position":{"top":77.59844970703125,"left":0.0206298828125},"pos_end":{"y":77.59844970703125,"x":0.0206298828125}},"t16":{"end_side":"TR","position":{"top":95.00692749023438,"left":53.79693603515625},"pos_end":{"y":95.00692749023438,"x":88.03300413746337}},"t12":{"end_side":"MR","position":{"top":100.10496520996094,"left":159.498046875},"pos_end":{"y":114.24236582457236,"x":225.65810561649016}},"t13":{"end_side":"TR","position":{"top":7.624794006347656,"left":242.36444091796875},"pos_end":{"y":7.624794006347656,"x":290.28788196373273}}}"');
 				$.se.tree.meta.sizeOverride 	=	'S';
 				tOffset 	=	(winHeight * .2);
 				console.log('No Flexbox. Size: S');
@@ -206,44 +219,31 @@
 	}
 	
 	$.se.tree.createWorkBranches = function() {
+	
 		$('#treeWork .item').each(function(i) { // Find each item
 			var $this 		=	$(this)
-				innerMedia	=	$(this)[0],
-				workBranch	=	$(this).data('branch_attach'), 
-				workType	=	$(this).data('type');
-			$.se.tree.branch[workBranch] = $(this).find('.thumb').detach();	// Cache each item
+				innerMedia	=	$this[0],
+				workBranch	=	$this.data('branch_attach'), 
+				$.se.workBranch = workBranch,
+				workType	=	$this.data('type');
+			$.se.tree.branch[workBranch] = $this.find('.thumb').detach();	// Cache each item
 			$.se.tree.branch[workBranch].type = workType;
 			
-
 			if (workType == 'image') { // for images we'll check to see if it's downloaded first
-				
-				$.se.tree.branch[workBranch].img 		= 	new Image();
- 				$.se.tree.branch[workBranch].img.src 	=	$this.find('img').attr('src');
-				
-				//+ This bad boy is messing up firefox, dang it. 
-				//$.se.tree.branch[workBranch].img.onLoad = 	imageLoaded();
-				// var imageLoaded = function() {
-				// 	setWorkThumbPositions(workBranch);
-				// 	setModalSizes(workBranch);
-				// 	setModalDefaults(workBranch);
-				// }
-
-				setWorkThumbPositions(workBranch);
-				setModalSizes(workBranch);
-				setModalDefaults(workBranch);
+			    $.se.tree.branch[workBranch].img        =   new Image();
+                $.se.tree.branch[workBranch].img.onload =	function branchGo() {
+                	loadThumb(this.workBranch);
+                }
+                $.se.tree.branch[workBranch].img.workBranch = workBranch;
+                $.se.tree.branch[workBranch].img.src    =   $this.find('img').attr('src');
 
 			 } else if (workType == 'video')  { // other media like videos we'll go ahead & load
 			 	//alert(Modernizr.video.webm + Modernizr.video.h264);
 			 	if (Modernizr.video.h264 || Modernizr.video.webm) { // Check to see that h264 works! 
-			 		setWorkThumbPositions(workBranch);
-			 		setModalSizes(workBranch);
-			 		setModalDefaults(workBranch);
-			 		//console.log('here: ');
+			 		loadThumb(workBranch);
 			 	}
 			 } else {
-			 	setWorkThumbPositions(workBranch);
-			 	setModalSizes(workBranch);
-			 	setModalDefaults(workBranch);
+			 	loadThumb(workBranch);
 			 }
 		});
 
@@ -259,8 +259,13 @@
 		});	
 	}	
 
-	var setWorkThumbPositions = function(workBranch) {
-		
+	var loadThumb = function(workBranch) {
+        setWorkThumbPositions(workBranch);
+ 		setModalSizes(workBranch);
+ 		setModalDefaults(workBranch);
+    }
+
+	var setWorkThumbPositions = function(workBranch) {		
 
 		if ( !$.se.tree.meta.sizeOverride ) {
 			$.se.tree.x_y(workBranch); // set coordinates for this item
@@ -284,27 +289,36 @@
 		// console.log('tWidthDif: ' + tWidthDif);
 		thumb.appendTo('#tree'); // Add to Dom (this allows us to change after resize w same function)
 		thumb = $('#'+workBranch+'_thumb'); // REset thumb to dom now. 
+		
+		bgImage  =   new Image();
+        bgImage.src		=	thumb.attr('data-bgImage');
+
+
+
 		thumb.css({
-			'width'			: 	tWidth,
-			'height'		: 	tWidth,
-			'top'			: 	(tY - tWidthHalf + tHeightDif),
-		 	'left'			: 	(tX - tWidthHalf + tWidthDif),
-		 	'border-radius'	: 	tWidthHalf
+			'width'				: 	tWidth,
+			'height'			: 	tWidth,
+			'top'				: 	(tY - tWidthHalf + tHeightDif),
+		 	'left'				: 	(tX - tWidthHalf + tWidthDif),
+		 	'border-radius'		: 	tWidthHalf,
+		 	'background-image'	:  'url("' + bgImage.src + '")'
 		});	
+		//thumb.css('background-image', 'url("' + bgImage + '")');
 		thumb.find('.overlay').css({
 			'width'			: 	tWidth,
 			'height'		: 	tWidth,
 			'border-radius'	: 	tWidthHalf * 1.2
 		});
-		thumb.addClass(workType);
-
 		//console.log('$.se.tree.meta[workBranch].pos_end.y: ' + $.se.tree.meta[workBranch].pos_end.y);
 		//console.log( ($.se.tree.meta[workBranch].pos_end.x * tHeightDif) - tWidthHalf );
 
 	
 		// SHOW thumb only if this is first load. 
 		if ( thumb.hasClass('hide') ) {
-			thumb.toggleClass('hide');  //+ Fade In each item (maybe randomly? )
+       		thumb.addClass(workType).addClass('loading').removeClass('hide');
+	        bgImage.onload =	function thumbGo() {
+	        	thumb.removeClass('loading');  //+ Fade In each item (maybe randomly? )
+	        }
 		}
 
 	}
@@ -619,7 +633,7 @@
 	}
 
 	var startWorkModal = function() {
-		$('#tree .thumb').on('click', function (e) { // Show Modal on Thumb Click
+		$('#tree').on('click', '.thumb', function (e) { // Show Modal on Thumb Click
 			e.preventDefault();
 			var workBranch 	=	$(this).data('branch_attach');
 			$('#'+workBranch+'_modal').modal('toggle');
@@ -660,18 +674,8 @@
 
 $(function() {
 	
-	var go = function() {
-		if (document.readyState != "complete") {
-    		setTimeout( 
-    		go, // try again in 100 milloseconds 
-    		100);
-    	return;
-  		} else {
-  			$('body').removeClass('loading');
-			$.se.init();
-  		}
-  	}
-  	go();
+
+  	$.se.init();
 	$(window).resize(function() {
 		$.se.resize();
 	});	
